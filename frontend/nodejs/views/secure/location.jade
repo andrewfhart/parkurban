@@ -1,0 +1,40 @@
+extends ../layout-secure
+
+block content
+  h2=location.name
+  
+  div(data-role='collapsible-set',data-expanded-icon='arrow-d',data-collapsed-icon='arrow-r',data-inset='false')
+    div(data-role='collapsible', data-collapsed='false')
+      h3 Address
+      p=location.address1
+      p #{location.city}, #{location.state} #{location.zip}
+    
+    div(data-role='collapsible')
+      h3 Available spaces
+      p There are #{location.numSpots} spaces at this location
+    
+    div(data-role='collapsible')
+      h3 Hours of Availability
+      table
+        tr 
+          th Monday
+          td #{location.hours.mon.start} to #{location.hours.mon.end}
+        tr 
+          th Tuesday
+          td #{location.hours.tue.start} to #{location.hours.tue.end}
+        tr 
+          th Wednesday
+          td #{location.hours.wed.start} to #{location.hours.wed.end}
+        tr 
+          th Thursday
+          td #{location.hours.thu.start} to #{location.hours.thu.end}
+        tr 
+          th Friday
+          td #{location.hours.fri.start} to #{location.hours.fri.end}
+        tr 
+          th Saturday
+          td #{location.hours.sat.start} to #{location.hours.sat.end}
+        tr 
+          th Sunday
+          td #{location.hours.sun.start} to #{location.hours.sun.end}
+  

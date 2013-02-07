@@ -1,0 +1,16 @@
+extends ../layout-secure
+
+block scripts
+  script(type='text/javascript',src='/libs/leaflet/dist/leaflet.js');
+  script(type='text/javascript',src='/javascripts/park/search.js');
+  
+block styles
+  link(rel='stylesheet',type='text/css',href='/libs/leaflet/dist/leaflet.css')
+
+block content
+  form#search
+    input(type='text',placeholder='Address or landmark...')
+  div#map
+    
+
+

@@ -1,0 +1,16 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.1",
+    "jade": "*",
+    "passport": "0.1.15",
+    "passport-local": "0.1.6",
+    "mongoose": "3.3.1",
+    "stylus": "0.30.1"
+  }
+}

@@ -1,0 +1,69 @@
+.centered {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.strong {
+  font-weight: bold;
+}
+.summary {
+  background-color: #ded;
+}
+/* Chart Styles */
+#charts .barchart {
+  width: auto;
+}
+#charts .barchart td {
+  height: 10em;
+  width: 1em;
+}
+#charts .barchart td,
+#charts .barchart th {
+  padding: 0.2em;
+}
+#charts .barchart td div {
+  background-color: #4682b4;
+}
+#charts .barchart td div:hover {
+  background-color: #ff9f27;
+}
+/* Search Map Styles */
+#map {
+  height: 500px;
+  background-color: #888;
+}
+/* Reservation Styles */
+#reservation th {
+  text-align: left;
+  padding: 10px 20px 10px 0px;
+}
+#reservation th.price {
+  color: #008000;
+}
+div.alert.success {
+  background-color: #aea;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px #8a8;
+}
+div.alert.success h5 {
+  margin: 0px;
+}
+div.alert.success p {
+  font-size: 90%;
+  margin: 0px;
+}
+div.alert.warn {
+  background-color: #fea;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px #cb8;
+}
+div.alert.warn h5 {
+  margin: 0px;
+}
+div.alert.warn p {
+  font-size: 90%;
+  margin: 0px;
+}

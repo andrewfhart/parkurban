@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    h1 Sign up...
+    form(method='POST',action='/register')
+        div
+            label Email Address
+            input(type='text',name='mail')
+        div
+            label Password
+            input(type='password',name='password')
+        div
+            input(type='submit',value='Sign Up')

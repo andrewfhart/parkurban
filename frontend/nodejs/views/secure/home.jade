@@ -1,0 +1,13 @@
+extends ../layout-secure
+ 
+block content
+
+    h3 Latest Activity
+    ul(data-role='listview',data-theme='c')
+        each item in activity
+            li
+                startTime = new Date(item.time.reservationStart * 1000);
+                amPm = (startTime.getHours() < 12) ? 'AM' : 'PM';
+                h5=startTime.toDateString() + ' at ' + startTime.getHours() + ':' + startTime.getMinutes() + ' ' + amPm
+                p <strong>#{item.user.id} </strong> parked for #{item.duration} hours at "#{item.location.label}"
+                p.right #{item.duration} x #{item.rate} = <strong>$#{item.total}</strong>

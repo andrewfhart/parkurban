@@ -1,0 +1,23 @@
+extends ../layout-secure
+
+block content
+  div.alert.success
+    h5 Hooray!
+    p  Your spot has been extended for 1 hour.
+  form#reservation
+    table.table
+      tr
+        th Location:
+        td Woody's Garage
+      tr
+        th Start:
+        td Wed, Nov. 28 @ 10:57 P.M.
+      tr
+        th Rate:
+        td $2.50 / hour
+      tr
+        th Duration:
+        td 1 Hour (until 11:57 P.M.)
+      tr.price
+        th Total:
+        td $2.50

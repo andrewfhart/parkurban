@@ -1,0 +1,31 @@
+extends ../layout-secure
+
+block content
+  form#reservation
+    table.table
+      tr
+        th Location:
+        td Woody's Garage
+      tr
+        th Start:
+        td Wed, Nov. 28 @ 09:00 P.M.
+      tr
+        th Rate:
+        td $2.50 / hour
+      tr
+        th Duration:
+        td
+          select(name='duration')
+            option(value='') Please Select...
+            option(value='1') 1 Hour
+            option(value='2') 2 Hours
+            option(value='3') 3 Hours
+            option(value='4') 4 Hours
+      tr.price
+        th Total:
+        td $5.00
+      tr
+        th
+        td
+          input(type='submit',data-role='button',data-inline='true',value='Pay Now')
+          input(type='button',data-role='button',data-inline='true',value='Cancel')
