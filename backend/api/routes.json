@@ -1,0 +1,5 @@
+[
+  ["/","1/search#splash"],
+  ["/v1/search/zip/:zip", "1/search#zip"],
+  ["/v1/search/latlon/:lon/:lat/:radius", "1/search#latlon", {"radius": 1}]
+]
