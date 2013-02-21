@@ -1,5 +1,7 @@
 var ApiServer    = require('apiserver'),
     SearchModule = require('./lib/api_modules/search').Search,
+    ReservationsModule = require('./lib/api_modules/reservations').Reservations,
+    BillingModule = require('./lib/api_modules/billing').Billing,
     routes       = require('./routes');
 
 var apiServer = new ApiServer({port:3019})
@@ -9,6 +11,8 @@ apiServer.use(ApiServer.payloadParser());
 
 // Modules
 apiServer.addModule('1', 'search', SearchModule);
+apiServer.addModule('1', 'reservations', ReservationsModule);
+apiServer.addModule('1', 'billing', BillingModule);
 
 // Routing
 apiServer.router.addRoutes(routes);
