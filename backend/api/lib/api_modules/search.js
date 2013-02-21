@@ -92,9 +92,9 @@ exports.Search = {
         var box  = [ [lon1,lat1], [lon2,lat2] ];
         
         Schema.Inventory.find({ 'loc': { '$within': {'$box': box}}}, function(err, docs) {
-          if (err) Api.handleError(request,response,err);
+          if (err) Api.respondWithError(request,response,err);
           console.log(docs);
-          Api.makeResponse(request,response,docs);
+          Api.respondWithData(request,response,docs);
         });
       });
     }
