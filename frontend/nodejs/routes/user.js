@@ -24,9 +24,10 @@ exports.register_post = function (req, res) {
 };
 
 exports.login_get = function (req, res) {
-    res.render('user/login.jade',{
-    
-    });
+    if (req.isAuthenticated())
+        res.redirect('/search');
+    else 
+        res.render('user/login.jade',{});
 };
 
 /*
