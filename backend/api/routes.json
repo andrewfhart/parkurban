@@ -1,5 +1,11 @@
 [
   ["/","1/search#splash"],
+  
   ["/v1/search/zip/:zip", "1/search#zip"],
-  ["/v1/search/latlon/:lon/:lat/:radius", "1/search#latlon", {"radius": 1}]
+  ["/v1/search/latlon/:lon/:lat/:radius", "1/search#latlon", {"radius": 1}],
+  ["/v1/search/within/:lon1/:lat1/:lon2/:lat2", "1/search#within"],
+  
+  ["/v1/reservations/reserve","1/reservations#reserve"],
+  
+  ["/v1/billing/charge","1/billing#charge"]
 ]
