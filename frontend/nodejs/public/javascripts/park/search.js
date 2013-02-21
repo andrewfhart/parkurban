@@ -23,7 +23,8 @@ $(document).bind('pageshow', function() {
     "Open Street Map": osm
   };
   
-  var overlays = {}
+  var markers = {};
+  var overlays = {};
   var visibleLayers = {};
   var layersControl = L.control.layers(baseLayers, overlays);
   map.attributionControl.setPrefix("Search Powered by ParkUrban");
@@ -42,10 +43,24 @@ $(document).bind('pageshow', function() {
         console.log(resp);
         $.each(resp.results, function (i,v) {
             console.log(v);
-            L.marker([v.loc[1],v.loc[0]])
+            
+            // Skip markers that are already visible
+            if (markers[v._id]) {console.log('skipping ' + v._id); return;}
+            
+            // For a new marker, create a marker object...
+            console.log('creating marker for ' + v._id);
+            markers[v._id] = L.marker([v.loc[1],v.loc[0]])
                 .bindPopup(
-                    "<b>" + v.name + "</b><br/>"+v.description+"<br/><strong style='color:green;'>" + v.status + "</strong><hr/><a href='#'>I'm Here</a> (reserve spot)"
-                ).addTo(map);
+                      "<b>" + v.name + "</b><br/>"
+                    + "<p>" + v.description+"</p>"
+                    + "<strong style='color:green;'>"
+                    +     v.status
+                    + "</strong><hr/>"
+                    + "<a href='#'>I'm Here</a> (reserve spot)"
+                );
+                
+            // ... and add it to the map
+            markers[v._id].addTo(map);
         });
     });
   });
