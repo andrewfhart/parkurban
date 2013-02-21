@@ -1,11 +1,13 @@
 extends ../layout
 
 block content
-  h2 Please log in...
-  form(method='POST',action='/login')
-    div
-      input(type='text',name='mail',placeholder='Email address...')
-    div
-      input(type='password',name='password',placeholder='Password...')
-    div
-      input(type='submit',value='Log In')
+    div.centered
+        img(src='/images/parkurban-mobile.200.png')
+        h2 Please log in...
+        form(method='POST',action='/login',data-ajax='false')
+            div
+                input(type='text',name='mail',placeholder='Email address...')
+            div
+                input(type='password',name='password',placeholder='Password...')
+            div
+                input(type='submit',value='Log In')
