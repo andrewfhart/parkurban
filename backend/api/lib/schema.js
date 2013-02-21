@@ -1,16 +1,27 @@
 /**
- * ParkUrban API Server
+ * ParkUrban - Mobile Web Application
+ *
+ * Application Data Schema
+ *
+ * This file contains the definitions (schema) for the ParkUrban MongoDB 
+ * collections. 
  *
  * @author andrew <andrew@datafluency.com>
  *
  **/
-/** SCHEMA --------------------------------------------------*/
 var mongoose       = require('mongoose')
     , util         = require('util')
     , crypto       = require('crypto')
     , Schema       = mongoose.Schema
     , ObjectId     = Schema.ObjectId
     
+/**
+ * Inventory
+ *
+ * This collection holds documents containing the following information for
+ * each parking spot registered with ParkUrban.
+ *
+ **/    
 var InventorySchema = new Schema({
   name: String,
   description: String,
@@ -24,6 +35,30 @@ var InventorySchema = new Schema({
 
 InventorySchema.index({'loc':'2d'});
 
+
+/**
+ * Reservation
+ *
+ * This collection holds documents containing the following information for
+ * each parking spot reservation made with ParkUrban.
+ *
+ **/
+var ReservationSchema = new Schema({
+  _owner:   { type: ObjectId, ref: 'User', index: true },
+  _spot:    { type: ObjectId, ref: 'Inventory' },
+  created:  { type: Date, default: Date.now },
+  start:    { type: Date, index: true },
+  duration: { type: Number }
+});
+
+
+/**
+ * User
+ *
+ * This collection holds documents containing the following information for
+ * each user registered with ParkUrban.
+ *
+ **/
 var UserSchema = new Schema({
     mail: {type: String, index: true, unique: true}
     , password: String
@@ -64,8 +99,10 @@ UserSchema.methods.authenticate = function (password) {
     return this.encryptPassword(password) === this.password;
 };
 
-exports.ObjectId  = ObjectId;
-exports.User      = mongoose.model('User', UserSchema);
-exports.Inventory = mongoose.model('Inventory', InventorySchema);
+exports.ObjectId    = ObjectId;
+exports.User        = mongoose.model('User', UserSchema);
+exports.Inventory   = mongoose.model('Inventory', InventorySchema, "inventories");
+exports.Reservation = mongoose.model('Reservation', ReservationSchema);
 
+// Database connection
 mongoose.connect('mongodb://localhost/parkurban');
