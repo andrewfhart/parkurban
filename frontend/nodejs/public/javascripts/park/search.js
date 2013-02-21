@@ -1,4 +1,16 @@
-$(document).bind('pageinit', function() {
+/**
+ * ParkUrban - Mobile Web Application
+ *
+ * Client-side inventory search (slippy map)
+ *
+ * This file contains the client-side javascript used to implement the 
+ * Leaflet-based slippy map and display of inventory markers. The code
+ * here is bound to the 'pageshow' event instead of the more common
+ * 'ready' event in deference to the best-practices suggested by the 
+ * documentation for the JQuery Mobile library we use for skinning the app.
+ *
+ **/
+$(document).bind('pageshow', function() {
 
   var map = L.map('map');
   var osm = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
@@ -12,21 +24,29 @@ $(document).bind('pageinit', function() {
   };
   
   var overlays = {}
-  
   var visibleLayers = {};
   var layersControl = L.control.layers(baseLayers, overlays);
-  map.attributionControl.setPrefix("Powered by ParkUrban");
+  map.attributionControl.setPrefix("Search Powered by ParkUrban");
   var westernUS = new L.LatLng(39.7391667,-104.9841667);
-  var losAngeles= new L.LatLng(34.01667, -118.28333);
-  map.setView(westernUS, 15).addLayer(osm).addControl(layersControl);
+  var losAngeles= new L.LatLng(34.0800, -118.25333);
+  map.setView(losAngeles, 13).addLayer(osm).addControl(layersControl);
   
-  // Sample Markers
-  
-  var marker  = L.marker([34.01467, -118.27033]).addTo(map);
-  var marker2 = L.marker([34.01667, -118.27033]).addTo(map);
-  var marker3 = L.marker([34.01467, -118.26033]).bindPopup("<b>Woody's Garage</b><br>7 of 15 spaces available<br>$2.50/hr<br/><a href='#'>I'm Here</a> (reserve spot)").openPopup().addTo(map);
-  var marker4 = L.marker([34.01667, -118.28033]).addTo(map);
-  var marker5 = L.marker([34.01667, -118.28333]).addTo(map);
-  
-
+  /**
+   * Each time the user stops dragging the map, update the map with the parking 
+   * inventory that falls within the new display boundaries.
+   **/
+  map.on('moveend', function (e) {
+    var boundingBoxParams = map.getBounds().toBBoxString().replace(/\,/g,'/');
+    console.log(boundingBoxParams);
+    $.getJSON('/search/inventory/within/' + boundingBoxParams, function (resp) {
+        console.log(resp);
+        $.each(resp.results, function (i,v) {
+            console.log(v);
+            L.marker([v.loc[1],v.loc[0]])
+                .bindPopup(
+                    "<b>" + v.name + "</b><br/>"+v.description+"<br/><strong style='color:green;'>" + v.status + "</strong><hr/><a href='#'>I'm Here</a> (reserve spot)"
+                ).addTo(map);
+        });
+    });
+  });
 });
