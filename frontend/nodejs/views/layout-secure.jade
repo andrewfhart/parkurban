@@ -17,10 +17,11 @@ html
   body
     div(data-role='page')
       div(data-role='header')
+        a(href='/home', data-role='button', data-icon='home') Home
+        a(href='/search', data-role='button', data-icon='search', data-iconpos='right', data-ajax='false') Search
         h1=pageLabel
         div(data-role='navbar',data-iconpos='top')
           ul
-            li: a#nav-search(href='/search') Search
             li: a#nav-latest(href='/home') Latest
             li: a#nav-locations(href='/locations') Locations
             li: a#nav-revenue(href='/revenue') Revenue
